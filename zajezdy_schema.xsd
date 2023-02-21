@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:kovj19:zajezdy"
+    xmlns="urn:kovj19:zajezdy" elementFormDefault="qualified"
+    xmlns:z="urn:kovj19:zajezdy">
+
+    <xs:element name="zajezdy" type="zajezdyType">
+        <xs:key name="prezdivkyInstruktoruKey">
+            <xs:annotation>
+                <xs:documentation>Klíč kontrolující unikátnost přezdívek instruktorů v seznamu instruktorů.</xs:documentation>
+            </xs:annotation>
+            <xs:selector xpath="z:instruktori/z:instruktor"/>
+            <xs:field xpath="z:prezdivka"/>
+        </xs:key>
+        
+        <xs:keyref refer="prezdivkyInstruktoruKey" name="instruktoriTurnusKey">
+            <xs:annotation>
+                <xs:documentation>Klíč pro kontrolu, jestli jsou na turnusech napsány jen ty přezdívky instruktorů,
+                    které jsou v seznamu instruktorů.</xs:documentation>
+            </xs:annotation>
+            <xs:selector xpath="z:zajezd/z:turnus/z:instruktori/z:instruktor"/>
+            <xs:field xpath="."/>
+        </xs:keyref>
+    </xs:element>
+
+    <xs:complexType name="zajezdyType">
+        <xs:sequence>
+            <xs:element name="instruktori" type="instruktoriType"/>
+            <xs:element name="zajezd" type="zajezdType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="instruktoriType">
+        <xs:sequence>
+            <xs:element name="instruktor" type="instruktorType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="instruktorType">
+        <xs:sequence>
+            <xs:element name="jmeno" type="neprazdnyRetezec"/>
+            <xs:element name="prijmeni" type="neprazdnyRetezec"/>
+            <xs:element name="prezdivka" type="neprazdnyRetezec"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="zajezdType">
+        <xs:sequence>
+            <xs:element name="nazev" type="xs:string"/>
+            <xs:element name="zeme" type="xs:string"/>
+            <xs:element name="fotky" type="fotkyType"/>
+            <xs:element name="turnus" type="turnusType" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="typ" type="typZajezduEnum" use="required"/>
+    </xs:complexType>
+    
+    <xs:simpleType name="typZajezduEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="vodácký"/>
+            <xs:enumeration value="turistický"/>
+            <xs:enumeration value="lyžařský"/>
+            <xs:enumeration value="horolezecký"/>
+            <xs:enumeration value="ferratový"/>
+            <xs:enumeration value="potápěčský"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="fotkyType">
+        <xs:sequence>
+            <xs:element name="fotka" type="fotkaType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="fotkaType">
+        <xs:sequence>
+            <xs:element name="src" type="xs:string"/>
+            <xs:element name="alt" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="turnusType">
+        <xs:sequence>
+            <xs:element name="instruktori" type="instruktoriZajezdType">
+                <xs:key name="prezdivkyInstruktoruTurnusKey">
+                    <xs:annotation>
+                        <xs:documentation>Klíč kontrolující unikátnost přezdívek instruktorů na turnusu.</xs:documentation>
+                    </xs:annotation>
+                    <xs:selector xpath="z:instruktor"/>
+                    <xs:field xpath="."/>
+                </xs:key>
+            </xs:element>
+            <xs:element name="datumOdjezdu" type="xs:date"></xs:element>
+            <xs:element name="datumPrijezdu" type="xs:date"></xs:element>
+            <xs:element name="strava" type="stravaEnum"></xs:element>
+            <xs:element name="doprava" type="dopravaEnum"></xs:element>
+            <xs:element name="pocetMist" type="xs:int"></xs:element>
+            <xs:element name="cena" type="cenaType"></xs:element>
+            <xs:element name="ubytovani" type="ubytovaniType"></xs:element>
+            <xs:element name="povinnaVybava" type="xs:string"></xs:element>
+            <xs:element name="fyzickaNarocnost" type="narocnostEnum"></xs:element>
+            <xs:element name="prihlaseni" type="prihlaseniType"></xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:int" use="required"/>
+    </xs:complexType>
+    
+    <xs:simpleType name="cenaType">
+        <xs:restriction base="xs:decimal">
+            <xs:minExclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="narocnostEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="nízká"/>
+            <xs:enumeration value="střední"/>
+            <xs:enumeration value="vysoká"/>
+            <xs:enumeration value="velmi vysoká"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="stravaEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="vlastní"/>
+            <xs:enumeration value="zajištěna"/>
+            <xs:enumeration value="polopenze"/>
+            <xs:enumeration value="snídaně"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="dopravaEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="vlastní"/>
+            <xs:enumeration value="minivan"/>
+            <xs:enumeration value="autobus/vlak"/>
+            <xs:enumeration value="letecká"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="instruktoriZajezdType">
+        <xs:sequence>
+            <xs:element name="instruktor" type="neprazdnyRetezec" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="ubytovaniType">
+        <xs:sequence>
+            <xs:element name="adresa" type="adresaType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="typ" type="typUbytovaniEnum" use="required"/>
+    </xs:complexType>
+    
+    <xs:simpleType name="typUbytovaniEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="vlastní"/>
+            <xs:enumeration value="stan"/>
+            <xs:enumeration value="apartmán"/>
+            <xs:enumeration value="hotel"/>
+            <xs:enumeration value="kemp"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="adresaType">
+        <xs:sequence>
+            <xs:element name="ulice" type="neprazdnyRetezec"/>
+            <xs:element name="mesto" type="neprazdnyRetezec"/>
+            <xs:element name="psc" type="neprazdnyRetezec"/> <!-- PSČ v některých státech užívá i písmena (např. Nizozemsko) -->
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="prihlaseniType">
+        <xs:sequence>
+            <xs:element name="klient" type="klientType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="klientType">
+        <xs:sequence>
+            <xs:element name="jmeno" type="xs:string"/>
+            <xs:element name="prijmeni" type="xs:string"/>
+            <xs:element name="pohlavi" type="pohlaviEnum"/>
+            <xs:element name="datumNarozeni" type="xs:date"></xs:element>
+            <xs:element name="statniPrislusnost" type="xs:string"/>
+            <xs:element name="email" type="emailType"/>
+            <xs:element name="telefon" type="telefonType"/>
+            <xs:element name="trvaleBydliste" type="adresaType"></xs:element>
+            <xs:element name="zaplaceno" type="zaplacenoEnum"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="emailType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="telefonType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\+?[0-9]*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="pohlaviEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Žena"/>
+            <xs:enumeration value="Muž"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="zaplacenoEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ano"/>
+            <xs:enumeration value="ne"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="neprazdnyRetezec">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="zajezdy_schematron.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<zajezdy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:kovj19:zajezdy zajezdy_schema.xsd" xmlns="urn:kovj19:zajezdy"
+    xmlns:z="urn:kovj19:zajezdy">
+    <instruktori>
+        <instruktor>
+            <jmeno>Petr</jmeno>
+            <prijmeni>Pavel</prijmeni>
+            <prezdivka>Kosťa</prezdivka>
+            <!-- slouží i jako Id zaměstnance, jde o malou firmu, každý má unikatní, kontrola referenční integrity, že v jednom turnusu se neopakují -->
+        </instruktor>
+        <instruktor>
+            <jmeno>Jana</jmeno>
+            <prijmeni>Dolecká</prijmeni>
+            <prezdivka>Doly</prezdivka>
+        </instruktor>
+        <instruktor>
+            <jmeno>Pavel</jmeno>
+            <prijmeni>Uhlíř</prijmeni>
+            <prezdivka>Pytel</prezdivka>
+        </instruktor>
+    </instruktori>
+    <zajezd typ="ferratový">
+        <nazev>Ferratový zájezd v Alpách</nazev>
+        <zeme>Rakousko</zeme>
+        <fotky>
+            <fotka>
+                <src>resources/rakousko.jpg</src>
+                <alt>Ferrata Drachenwand</alt>
+            </fotka>
+        </fotky>
+        <turnus id="981">
+            <instruktori>
+                <instruktor>Kosťa</instruktor>
+            </instruktori>
+            <datumOdjezdu>2021-05-13</datumOdjezdu>
+            <datumPrijezdu>2021-05-19</datumPrijezdu>
+            <strava>zajištěna</strava>
+            <doprava>minivan</doprava>
+            <pocetMist>7</pocetMist>
+            <cena>8500</cena>
+            <ubytovani typ="kemp">
+                <adresa>
+                    <ulice>Fusch an der Großglocknerstraße 5672</ulice>
+                    <mesto>Gemeinde</mesto>
+                    <psc>5061</psc>
+                </adresa>
+            </ubytovani>
+            <povinnaVybava>ferratová brzda, přilba, pevné boty, sedák</povinnaVybava>
+            <fyzickaNarocnost>vysoká</fyzickaNarocnost>
+            <prihlaseni>
+                <klient>
+                    <jmeno>Jan</jmeno>
+                    <prijmeni>Nový</prijmeni>
+                    <pohlavi>Muž</pohlavi>
+                    <datumNarozeni>1999-05-03</datumNarozeni>
+                    <statniPrislusnost>Česká republika</statniPrislusnost>
+                    <email>jan123@seznam.cz</email>
+                    <telefon>+420870398478</telefon>
+                    <trvaleBydliste>
+                        <ulice>Dělnická 15</ulice>
+                        <mesto>Praha 3</mesto>
+                        <psc>12003</psc>
+                    </trvaleBydliste>
+                    <zaplaceno>ano</zaplaceno>
+                </klient>
+                <klient>
+                    <jmeno>Pavla</jmeno>
+                    <prijmeni>Nová</prijmeni>
+                    <pohlavi>Žena</pohlavi>
+                    <datumNarozeni>1988-06-26</datumNarozeni>
+                    <statniPrislusnost>Česká republika</statniPrislusnost>
+                    <email>pavla123@email.com</email>
+                    <telefon>+420786670453</telefon>
+                    <trvaleBydliste>
+                        <ulice>Mostecká 13</ulice>
+                        <mesto>Praha 6</mesto>
+                        <psc>12018</psc>
+                    </trvaleBydliste>
+                    <zaplaceno>ano</zaplaceno>
+                </klient>
+                <klient>
+                    <jmeno>Jakub</jmeno>
+                    <prijmeni>Jungman</prijmeni>
+                    <pohlavi>Muž</pohlavi>
+                    <datumNarozeni>1990-11-03</datumNarozeni>
+                    <statniPrislusnost>Česká republika</statniPrislusnost>
+                    <email>jak.ju@email.cz</email>
+                    <telefon>+420879657876</telefon>
+                    <trvaleBydliste>
+                        <ulice>Oslí 89</ulice>
+                        <mesto>České Budějovice</mesto>
+                        <psc>37005</psc>
+                    </trvaleBydliste>
+                    <zaplaceno>ano</zaplaceno>
+                </klient>
+            </prihlaseni>
+        </turnus>
+    </zajezd>
+    <zajezd typ="turistický">
+        <nazev>Hřebenovka Malé Fatry</nazev>
+        <zeme>Slovensko</zeme>
+        <fotky>
+            <fotka>
+                <src>resources/slovensko.jpg</src>
+                <alt>Hřebenovka Malé Fatry</alt>
+            </fotka>
+        </fotky>
+        <turnus id="982">
+            <instruktori>
+                <instruktor>Doly</instruktor>
+            </instruktori>
+            <datumOdjezdu>2021-06-01</datumOdjezdu>
+            <datumPrijezdu>2021-06-05</datumPrijezdu>
+            <strava>vlastní</strava>
+            <doprava>minivan</doprava>
+            <pocetMist>7</pocetMist>
+            <cena>4000</cena>
+            <ubytovani typ="stan"/>
+            <povinnaVybava>turistická obuv, krosna</povinnaVybava>
+            <fyzickaNarocnost>nízká</fyzickaNarocnost>
+            <prihlaseni>
+                <klient>
+                    <jmeno>Jakub</jmeno>
+                    <prijmeni>Dorbert</prijmeni>
+                    <pohlavi>Muž</pohlavi>
+                    <datumNarozeni>1997-03-11</datumNarozeni>
+                    <statniPrislusnost>Česká republika</statniPrislusnost>
+                    <email>jak902@seznam.cz</email>
+                    <telefon>+420829876478</telefon>
+                    <trvaleBydliste>
+                        <ulice>Prokopova 13</ulice>
+                        <mesto>Mšeno</mesto>
+                        <psc>12023</psc>
+                    </trvaleBydliste>
+                    <zaplaceno>ano</zaplaceno>
+                </klient>
+            </prihlaseni>
+        </turnus>
+        <turnus id="983">
+            <instruktori>
+                <instruktor>Doly</instruktor>
+            </instruktori>
+            <datumOdjezdu>2021-07-01</datumOdjezdu>
+            <datumPrijezdu>2021-07-05</datumPrijezdu>
+            <strava>vlastní</strava>
+            <doprava>minivan</doprava>
+            <pocetMist>7</pocetMist>
+            <cena>4000</cena>
+            <ubytovani typ="stan"/>
+            <povinnaVybava>turistická obuv, krosna</povinnaVybava>
+            <fyzickaNarocnost>nízká</fyzickaNarocnost>
+            <prihlaseni/>
+        </turnus>
+    </zajezd>
+    <zajezd typ="vodácký">
+        <nazev>Rafting na Soči</nazev>
+        <zeme>Slovinsko</zeme>
+        <fotky>
+            <fotka>
+                <src>resources/slovinsko.jpg</src>
+                <alt>Rafting na řece Soči</alt>
+            </fotka>
+        </fotky>
+        <turnus id="1003">
+            <instruktori>
+                <instruktor>Pytel</instruktor>
+                <instruktor>Doly</instruktor>
+            </instruktori>
+            <datumOdjezdu>2021-06-19</datumOdjezdu>
+            <datumPrijezdu>2021-06-26</datumPrijezdu>
+            <strava>zajištěna</strava>
+            <doprava>vlastní</doprava>
+            <pocetMist>15</pocetMist>
+            <cena>9999</cena>
+            <ubytovani typ="apartmán">
+                <adresa>
+                    <ulice>Lepena 2</ulice>
+                    <mesto>Soča</mesto>
+                    <psc>5232</psc>
+                </adresa>
+            </ubytovani>
+            <povinnaVybava>boty do vody, neopren</povinnaVybava>
+            <fyzickaNarocnost>nízká</fyzickaNarocnost>
+            <prihlaseni>
+                <klient>
+                    <jmeno>Jakub</jmeno>
+                    <prijmeni>Petr</prijmeni>
+                    <pohlavi>Muž</pohlavi>
+                    <datumNarozeni>1992-11-11</datumNarozeni>
+                    <statniPrislusnost>Česká republika</statniPrislusnost>
+                    <email>jape93@seznam.cz</email>
+                    <telefon>+420234876478</telefon>
+                    <trvaleBydliste>
+                        <ulice>Luční 3</ulice>
+                        <mesto>Most</mesto>
+                        <psc>34923</psc>
+                    </trvaleBydliste>
+                    <zaplaceno>ano</zaplaceno>
+                </klient>
+                <klient>
+                    <jmeno>Pavla</jmeno>
+                    <prijmeni>Petrová</prijmeni>
+                    <pohlavi>Žena</pohlavi>
+                    <datumNarozeni>1992-03-11</datumNarozeni>
+                    <statniPrislusnost>Česká republika</statniPrislusnost>
+                    <email>pape94@seznam.cz</email>
+                    <telefon>+420987876478</telefon>
+                    <trvaleBydliste>
+                        <ulice>Luční 3</ulice>
+                        <mesto>Most</mesto>
+                        <psc>34923</psc>
+                    </trvaleBydliste>
+                    <zaplaceno>ano</zaplaceno>
+                </klient>
+            </prihlaseni>
+        </turnus>
+    </zajezd>
+</zajezdy>

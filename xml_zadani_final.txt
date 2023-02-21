@@ -1,0 +1,7 @@
+Autor: Jan Kovář (kovj19)
+
+Tématem semestrální práce je pomocí XML popsat zájezdy zážitkové cestovní kanceláře. Soubor bude popisovat informace
+důležité jak pro zákazníky, tak pro provoz samotné kanceláře. Kromě důležitých datumů, cen, fyzické náročnosti,
+či typů zájezdů (lyžařský, lezecký, vodácký, turistický atp.), tak bude obsahovat i například kódy využité v interních 
+systémech kanceláře sloužící pro identifikaci jednotlivých turnusů zájezdu. Dále údaje o přihlášených klientech i údaje 
+o instruktorech.
